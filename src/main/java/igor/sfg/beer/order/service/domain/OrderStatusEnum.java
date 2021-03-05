@@ -17,6 +17,7 @@
 
 package igor.sfg.beer.order.service.domain;
 
-public enum  OrderStatusEnum {
-    NEW, READY, PICKED_UP
+public enum OrderStatusEnum {
+    NEW, VALIDATED, VALIDATION_EXCEPTION, ALLOCATED, ALLOCATION_EXCEPTION,
+    PENDING_INVENTORY, READY, PICKED_UP, DELIVERED, DELIVERY_EXCEPTION
 }
