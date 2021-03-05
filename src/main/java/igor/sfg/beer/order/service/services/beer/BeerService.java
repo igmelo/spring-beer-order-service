@@ -1,6 +1,6 @@
 package igor.sfg.beer.order.service.services.beer;
 
-import igor.sfg.beer.order.service.web.model.BeerDto;
+import igor.sfg.brewery.model.BeerDto;
 
 import java.util.Optional;
 import java.util.UUID;

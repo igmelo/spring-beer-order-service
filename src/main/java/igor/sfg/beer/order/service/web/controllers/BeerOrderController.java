@@ -18,8 +18,8 @@
 package igor.sfg.beer.order.service.web.controllers;
 
 import igor.sfg.beer.order.service.services.BeerOrderService;
-import igor.sfg.beer.order.service.web.model.BeerOrderDto;
-import igor.sfg.beer.order.service.web.model.BeerOrderPagedList;
+import igor.sfg.brewery.model.BeerOrderDto;
+import igor.sfg.brewery.model.BeerOrderPagedList;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

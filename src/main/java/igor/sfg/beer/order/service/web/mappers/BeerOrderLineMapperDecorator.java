@@ -2,8 +2,8 @@ package igor.sfg.beer.order.service.web.mappers;
 
 import igor.sfg.beer.order.service.domain.BeerOrderLine;
 import igor.sfg.beer.order.service.services.beer.BeerService;
-import igor.sfg.beer.order.service.web.model.BeerDto;
-import igor.sfg.beer.order.service.web.model.BeerOrderLineDto;
+import igor.sfg.brewery.model.BeerDto;
+import igor.sfg.brewery.model.BeerOrderLineDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 

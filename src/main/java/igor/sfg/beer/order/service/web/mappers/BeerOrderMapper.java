@@ -18,7 +18,7 @@
 package igor.sfg.beer.order.service.web.mappers;
 
 import igor.sfg.beer.order.service.domain.BeerOrder;
-import igor.sfg.beer.order.service.web.model.BeerOrderDto;
+import igor.sfg.brewery.model.BeerOrderDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

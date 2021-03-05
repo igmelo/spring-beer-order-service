@@ -1,6 +1,6 @@
 package igor.sfg.beer.order.service.services.beer;
 
-import igor.sfg.beer.order.service.web.model.BeerDto;
+import igor.sfg.brewery.model.BeerDto;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;

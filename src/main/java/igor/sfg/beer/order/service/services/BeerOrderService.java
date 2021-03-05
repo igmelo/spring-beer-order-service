@@ -18,8 +18,8 @@
 package igor.sfg.beer.order.service.services;
 
 
-import igor.sfg.beer.order.service.web.model.BeerOrderDto;
-import igor.sfg.beer.order.service.web.model.BeerOrderPagedList;
+import igor.sfg.brewery.model.BeerOrderDto;
+import igor.sfg.brewery.model.BeerOrderPagedList;
 import org.springframework.data.domain.Pageable;
 
 import java.util.UUID;
