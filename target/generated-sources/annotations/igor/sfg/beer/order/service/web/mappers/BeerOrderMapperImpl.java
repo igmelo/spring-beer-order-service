@@ -3,8 +3,8 @@ package igor.sfg.beer.order.service.web.mappers;
 import igor.sfg.beer.order.service.domain.BeerOrder;
 import igor.sfg.beer.order.service.domain.BeerOrder.BeerOrderBuilder;
 import igor.sfg.beer.order.service.domain.BeerOrderLine;
+import igor.sfg.beer.order.service.domain.BeerOrderStatusEnum;
 import igor.sfg.beer.order.service.domain.Customer;
-import igor.sfg.beer.order.service.domain.OrderStatusEnum;
 import igor.sfg.brewery.model.BeerOrderDto;
 import igor.sfg.brewery.model.BeerOrderDto.BeerOrderDtoBuilder;
 import igor.sfg.brewery.model.BeerOrderLineDto;
@@ -72,7 +72,7 @@ public class BeerOrderMapperImpl implements BeerOrderMapper {
         beerOrder.customerRef( dto.getCustomerRef() );
         beerOrder.beerOrderLines( beerOrderLineDtoListToBeerOrderLineSet( dto.getBeerOrderLines() ) );
         if ( dto.getOrderStatus() != null ) {
-            beerOrder.orderStatus( Enum.valueOf( OrderStatusEnum.class, dto.getOrderStatus() ) );
+            beerOrder.orderStatus( Enum.valueOf( BeerOrderStatusEnum.class, dto.getOrderStatus() ) );
         }
         beerOrder.orderStatusCallbackUrl( dto.getOrderStatusCallbackUrl() );
 

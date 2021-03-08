@@ -2,7 +2,7 @@ package igor.sfg.beer.order.service.services;
 
 import igor.sfg.beer.order.service.domain.BeerOrder;
 import igor.sfg.beer.order.service.domain.BeerOrderEventEnum;
-import igor.sfg.beer.order.service.domain.OrderStatusEnum;
+import igor.sfg.beer.order.service.domain.BeerOrderStatusEnum;
 import igor.sfg.beer.order.service.repositories.BeerOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.Message;
@@ -18,14 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BeerOrderManagerImpl implements BeerOrderManager {
 
-    private final StateMachineFactory<OrderStatusEnum, BeerOrderEventEnum> stateMachineFactory;
+    private final StateMachineFactory<BeerOrderStatusEnum, BeerOrderEventEnum> stateMachineFactory;
     private final BeerOrderRepository beerOrderRepository;
 
     @Transactional
     @Override
     public BeerOrder newBeerOrder(BeerOrder beerOrder){
         beerOrder.setId(null);
-        beerOrder.setOrderStatus(OrderStatusEnum.NEW);
+        beerOrder.setOrderStatus(BeerOrderStatusEnum.NEW);
 
         BeerOrder savedBeerOrder = beerOrderRepository.save(beerOrder);
         sendBeerOrderEvent(savedBeerOrder, BeerOrderEventEnum.VALIDATE_ORDER);
@@ -34,14 +34,14 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
 
     private void sendBeerOrderEvent(BeerOrder beerOrder, BeerOrderEventEnum eventEnum){
 
-        StateMachine<OrderStatusEnum, BeerOrderEventEnum> sm = build(beerOrder);
+        StateMachine<BeerOrderStatusEnum, BeerOrderEventEnum> sm = build(beerOrder);
 
         Message msg = MessageBuilder.withPayload(eventEnum).build();
         sm.sendEvent(msg);
     }
 
-    private StateMachine<OrderStatusEnum, BeerOrderEventEnum> build(BeerOrder beerOrder){
-        StateMachine<OrderStatusEnum, BeerOrderEventEnum> sm = stateMachineFactory.getStateMachine(beerOrder.getId());
+    private StateMachine<BeerOrderStatusEnum, BeerOrderEventEnum> build(BeerOrder beerOrder){
+        StateMachine<BeerOrderStatusEnum, BeerOrderEventEnum> sm = stateMachineFactory.getStateMachine(beerOrder.getId());
 
         sm.stop();
 
