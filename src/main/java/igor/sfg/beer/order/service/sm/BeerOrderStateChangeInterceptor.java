@@ -22,6 +22,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class BeerOrderStateChangeInterceptor extends StateMachineInterceptorAdapter<BeerOrderStatusEnum, BeerOrderEventEnum> {
+
     private final BeerOrderRepository beerOrderRepository;
 
     @Transactional

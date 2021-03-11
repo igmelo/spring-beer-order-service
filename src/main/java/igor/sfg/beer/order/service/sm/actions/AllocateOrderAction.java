@@ -22,6 +22,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class AllocateOrderAction implements Action<BeerOrderStatusEnum, BeerOrderEventEnum> {
+
     private final JmsTemplate jmsTemplate;
     private final BeerOrderRepository beerOrderRepository;
     private final BeerOrderMapper beerOrderMapper;

@@ -22,6 +22,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class ValidateOrderAction implements Action<BeerOrderStatusEnum, BeerOrderEventEnum> {
+
     private final BeerOrderRepository beerOrderRepository;
     private final BeerOrderMapper beerOrderMapper;
     private final JmsTemplate jmsTemplate;
@@ -33,8 +34,8 @@ public class ValidateOrderAction implements Action<BeerOrderStatusEnum, BeerOrde
 
         beerOrderOptional.ifPresentOrElse(beerOrder -> {
             jmsTemplate.convertAndSend(JmsConfig.VALIDATE_ORDER_QUEUE, ValidateOrderRequest.builder()
-                .beerOrder(beerOrderMapper.beerOrderToDto(beerOrder))
-                .build());
+                    .beerOrder(beerOrderMapper.beerOrderToDto(beerOrder))
+                    .build());
         }, () -> log.error("Order Not Found. Id: " + beerOrderId));
 
         log.debug("Sent Validation request to queue for order id " + beerOrderId);

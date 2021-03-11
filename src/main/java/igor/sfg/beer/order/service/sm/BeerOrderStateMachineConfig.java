@@ -15,18 +15,18 @@ import java.util.EnumSet;
 @RequiredArgsConstructor
 @Configuration
 @EnableStateMachineFactory
-public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<BeerOrderStatusEnum, BeerOrderEventEnum>{
+public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<BeerOrderStatusEnum, BeerOrderEventEnum> {
 
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> validateOrderAction;
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> allocateOrderAction;
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> validationFailureAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  validateOrderAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  allocateOrderAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  validationFailureAction;
     private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  allocationFailureAction;
-    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum> deallocateOrderAction;
+    private final Action<BeerOrderStatusEnum, BeerOrderEventEnum>  deallocateOrderAction;
 
     @Override
     public void configure(StateMachineStateConfigurer<BeerOrderStatusEnum, BeerOrderEventEnum> states) throws Exception {
         states.withStates()
-                .initial(BeerOrderStatusEnum.VALIDATION_PENDING)
+                .initial(BeerOrderStatusEnum.NEW)
                 .states(EnumSet.allOf(BeerOrderStatusEnum.class))
                 .end(BeerOrderStatusEnum.PICKED_UP)
                 .end(BeerOrderStatusEnum.DELIVERED)
@@ -34,8 +34,8 @@ public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<B
                 .end(BeerOrderStatusEnum.DELIVERY_EXCEPTION)
                 .end(BeerOrderStatusEnum.VALIDATION_EXCEPTION)
                 .end(BeerOrderStatusEnum.ALLOCATION_EXCEPTION);
-
     }
+
     @Override
     public void configure(StateMachineTransitionConfigurer<BeerOrderStatusEnum, BeerOrderEventEnum> transitions) throws Exception {
         transitions.withExternal()
@@ -79,7 +79,5 @@ public class BeerOrderStateMachineConfig extends StateMachineConfigurerAdapter<B
                 .source(BeerOrderStatusEnum.ALLOCATED).target(BeerOrderStatusEnum.CANCELLED)
                 .event(BeerOrderEventEnum.CANCEL_ORDER)
                 .action(deallocateOrderAction);
-
-
     }
 }

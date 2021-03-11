@@ -18,6 +18,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Component
 public class AllocationFailureAction implements Action<BeerOrderStatusEnum, BeerOrderEventEnum> {
+
     private final JmsTemplate jmsTemplate;
 
     @Override
